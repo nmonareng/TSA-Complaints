@@ -54,7 +54,7 @@ Below is an image showcasing the results of seasonal patterns in the complaints 
 
 Click the link below to view the interactive chart:
 
-➡️ [View Sales Chart](chart.html)
+➡️ [Complaints by season](TSAchart.html)
 
 ## License
 
