@@ -54,7 +54,7 @@ Below is an image showcasing the results of seasonal patterns in the complaints 
 
 Click below to view the live chart:
 
-➡️ [View Chart](https://nmonareng.github.io/repository/TSAchart.html)
+➡️ [View Chart](https://github.com/nmonareng/TSA-Complaints/blob/main/TSAchart.html)
 
 
 ## License
