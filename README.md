@@ -8,6 +8,30 @@ This dataset contains monthly counts of traveler complaints filed with the Trans
 
 This data is crucial for understanding the effectiveness and efficiency of TSA operations across different airports. Policymakers and stakeholders can identify systemic issues, improve security screening processes, and enhance traveler satisfaction by analyzing complaint patterns. Additionally, it promotes transparency and accountability within the TSA, helping to ensure that traveler concerns are addressed and service standards are maintained.
 
+# Importance of TSA Complaints Data
+
+Data about TSA complaints plays a crucial role in improving the overall airport and security experience. It provides insights that can help shape better practices, procedures, and policies. Below are key reasons why this data is important:
+
+## 1. Improves Customer Service
+   - Identifies recurring issues that affect passenger satisfaction.
+   - Helps the TSA enhance service quality, leading to smoother travel experiences.
+
+## 2. Identifies Trends and Patterns
+   - Highlights common problems, such as long wait times or inefficient screenings.
+   - Provides the TSA with actionable insights for targeted improvements.
+
+## 3. Enhances Security Procedures
+   - Allows the TSA to refine security processes while ensuring they remain effective.
+   - Balances the need for robust security with minimizing delays and inconvenience for passengers.
+
+## 4. Ensures Accountability and Transparency
+   - Promotes trust by allowing passengers to hold the TSA accountable for their actions.
+   - Transparent reporting and addressing of complaints help maintain public confidence.
+
+By analyzing TSA complaint data, the agency can continuously improve both security and customer service, making air travel safer and more efficient for everyone.
+
+
+
 ## Data Source
 
 The data is collected and maintained by the Transportation Security Administration (TSA). Each record represents the total number of complaints received for a specific airport, category, and subcategory within a given month. In its FOIA Electronic Reading Room, the TSA publishes semi-regular reports on the monthly numbers of traveler complaints by airport, category, and subcategory. The data can be accessed from the TSA FOIA Electronic Reading Room at [tsa.gov/foia/readingroom](https://www.tsa.gov/foia/readingroom?page=0).
@@ -52,9 +76,9 @@ This helps track trends in complaints over the years and provides insights into 
 
 Below is an image showcasing the results of seasonal patterns in the complaints data:
 
-Click below to view the live chart:
 
-➡️ [View Chart](https://github.com/nmonareng/TSA-Complaints/blob/main/TSAchart.html)
+
+Click below to view the live chart
 
 # How to Open a Shared GitHub File and Run Malloy Code
 To explore the data and run the analyses:
