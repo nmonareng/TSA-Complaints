@@ -52,9 +52,10 @@ This helps track trends in complaints over the years and provides insights into 
 
 Below is an image showcasing the results of seasonal patterns in the complaints data:
 
-Click the link below to view the interactive chart:
+Click below to view the live chart:
 
-➡️ [Complaints by season]( https://github.com/settings/repositories/TSAchart.html)
+➡️ [View Chart](https://nmonareng.github.io/repository/TSAchart.html)
+
 
 ## License
 
