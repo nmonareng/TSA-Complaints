@@ -56,6 +56,24 @@ Click below to view the live chart:
 
 ➡️ [View Chart](https://github.com/nmonareng/TSA-Complaints/blob/main/TSAchart.html)
 
+# How to Open a Shared GitHub File and Run Malloy Code
+To explore the data and run the analyses:
+
+## 1. Open the Shared GitHub File 
+
+Click on the https://github.com/nmonareng/TSA-Complaints provided to access the shared repository or file. 
+
+Once on Github, click Shift + period to open the Visual Studio browser.
+
+Navigate to file complaints.malloynb to run the code. 
+
+### Install Dependencies: 
+
+Ensure you have the necessary tools to run .malloynb notebooks. Malloy is a data modeling language; you'll need the appropriate environment to execute these notebooks.
+
+Run the Notebooks: Open and run the .malloynb notebooks using your preferred environment to reproduce the analyses.
+
+If using VS Code, install the Malloy plugin.
 
 ## License
 
