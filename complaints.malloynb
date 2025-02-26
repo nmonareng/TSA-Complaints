@@ -49,20 +49,22 @@ avg_complaints is avg(complaint_count)
 
 } 
 >>>markdown
-### How many airports are in the dataset?
+### This dataset contains monthly counts of traveler complaints filed with the Transportation Security Administration (TSA) across various airports. Complaints are categorized by airport, category, and subcategory, providing insights into traveler experiences and recurring issues over time.
+>>>markdown
+### 1.How many airports are in the dataset?
 >>>malloy
 run: SubCategory_Complaints -> {
     aggregate:total_airports
 }
 >>>markdown
-### Total number of complaints recorded in the dataset.
+### 2. Total number of complaints recorded in the dataset.
 >>>malloy
 run: SubCategory_Complaints -> {
     aggregate:total_complaints
 
 }
 >>>markdown
-### Airport with highest number of complaints?
+### 3. Airport with highest number of complaints?
 
 Note: Null/blank values appear to represent complaints not associated with any airport in particular. They are not grand totals.
 >>>malloy
@@ -72,7 +74,7 @@ run: SubCategory_Complaints -> {
     
 }
 >>>markdown
-### Which Country has the highest % complaints?
+### 4. Which Country has the highest % complaints?
 >>>malloy
 
 run: SubCategory_Complaints -> {
@@ -83,31 +85,64 @@ run: SubCategory_Complaints -> {
     
 }
 >>>markdown
-### How many complaints are there per year?
+### What is the trend of complaints over time, yearly?
+>>>malloy
+# bar_chart
+run: SubCategory_Complaints -> {
+    group_by: complaint_date.year
+    aggregate:total_complaints
+    
+}
+>>>markdown
+### 5. How many complaints are there per year?
 >>>malloy
 # bar_chart
 run: SubCategory_Complaints -> {
     group_by:complaint_date.year
     aggregate:total_complaints
 
-    # tootltip
-    nest: year_with_most_cat is {
-        group_by:complaint_date.year
-        aggregate:total_categories is count(clean_cat)
-        order_by: total_categories desc
-        limit:1
-
-    }
-    
+    # tooltip
+     aggregate:
+     total_categories is count(clean_cat)
+     total_Subcategories is count(Clean_subcat)
+           
 }
 >>>markdown
-### Which year had the most Categories?
+### 6. Which year had the most Categories?
 >>>malloy
 run: SubCategory_Complaints -> {
     group_by:complaint_date.year
     aggregate:total_categories is count(clean_cat)
     order_by: total_categories desc
     limit:1   
+}
+>>>markdown
+### 7. Are there any seasonal patterns in the complaints data?
+>>>malloy
+
+run: SubCategory_Complaints -> {
+    group_by:complaint_date.year
+    # line_chart 
+       nest:seasonal_patterns is {
+         group_by: complaint_date.quarter
+        aggregate:total_complaints
+    }   
+}
+>>>markdown
+### 8 Are there any categories with consistently increasing or decreasing complaint trends?
+>>>malloy
+
+run: SubCategory_Complaints -> {
+    group_by: clean_cat 
+    limit:10
+    -- Mark out the chart to see the numbers.
+    # bar_chart {y.independent size=spark}
+    nest: trends is {
+        group_by: complaint_date.year
+        aggregate:total_complaints
+        
+    
+    }
 }
 >>>markdown
 ### Which year had the most Subcategories?
@@ -156,26 +191,6 @@ run: SubCategory_Complaints -> {
     
 }
 >>>markdown
-### What is the trend of complaints over time, yearly?
->>>malloy
-# bar_chart
-run: SubCategory_Complaints -> {
-    group_by: complaint_date.year
-    aggregate:total_complaints
-    
-}
->>>markdown
-### Are there any seasonal patterns in the complaints data?
->>>malloy
---# line_chart
-run: SubCategory_Complaints -> {
-    group_by:complaint_date.year
-       nest:seasonal_patterns is {
-         group_by: complaint_date.quarter
-        aggregate:total_complaints
-    }   
-}
->>>markdown
  ### Which category has the highest number of complaints?
 >>>malloy
 run: SubCategory_Complaints -> {
@@ -213,20 +228,6 @@ run: SubCategory_Complaints -> {
     aggregate:total_complaints
     order_by: total_complaints 
     limit: 1   
-}
->>>markdown
-### Are there any categories with consistently increasing or decreasing complaint trends?
->>>malloy
-
-run: SubCategory_Complaints -> {
-    group_by: clean_cat 
-    -- Mark out the chart to see the numbers.
-    # bar_chart {y.independent size=spark}
-    nest: trends is {
-        group_by: complaint_date.year
-        aggregate:total_complaints
-    
-    }
 }
 >>>markdown
 ### Are there any sub_categories with consistently increasing or decreasing complaint trends?
