@@ -8,19 +8,19 @@ This dataset contains monthly counts of traveler complaints filed with the Trans
 
 This data is crucial for understanding the effectiveness and efficiency of TSA operations across different airports. Policymakers and stakeholders can identify systemic issues, improve security screening processes, and enhance traveler satisfaction by analyzing complaint patterns. Additionally, it promotes transparency and accountability within the TSA, helping to ensure that traveler concerns are addressed and service standards are maintained.Improving the overall airport and security experience and providing insights that can help shape better practices, procedures, and policies. Such as: 
 
-## 1. Improves Customer Service
+### 1. Improves Customer Service
    - Identifies recurring issues that affect passenger satisfaction.
    - Helps the TSA enhance service quality, leading to smoother travel experiences.
 
-## 2. Identifies Trends and Patterns
+### 2. Identifies Trends and Patterns
    - Highlights common problems, such as long wait times or inefficient screenings.
    - Provides the TSA with actionable insights for targeted improvements.
 
-## 3. Enhances Security Procedures
+### 3. Enhances Security Procedures
    - Allows the TSA to refine security processes while ensuring they remain effective.
    - Balances the need for robust security with minimizing delays and inconvenience for passengers.
 
-## 4. Ensures Accountability and Transparency
+### 4. Ensures Accountability and Transparency
    - Promotes trust by allowing passengers to hold the TSA accountable for their actions.
    - Transparent reporting and addressing of complaints help maintain public confidence.
 
