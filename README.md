@@ -51,7 +51,7 @@ This calculation helps analyze the proportion of total complaints attributed to 
 
 ### Visualization
 
-Below is an image showcasing the results of seasonal patterns in the complaints data:
+Below is an image showcasing the results of the code in Malloy:
 
 ![Summary of Findings](https://github.com/nmonareng/TSA-Complaints/blob/main/Summary_of_findings.png?raw=true)
 
@@ -62,6 +62,8 @@ To explore the data and run the analyses:
 ## 1. Open the Shared GitHub File 
 
 Click on the https://github.com/nmonareng/TSA-Complaints provided to access the shared repository or file. 
+
+
 
 Once on Github, click Shift + period to open the Visual Studio browser.
 
