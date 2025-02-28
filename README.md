@@ -68,9 +68,15 @@ To explore the data and run the analyses:
 
 Click on the https://github.com/nmonareng/TSA-Complaints provided to access the shared repository or file. 
 
+Once on Github, click Shift + period this will load the web editor. Then install the malloy extension. See images below for reference:
+| **Step**   | **Image Preview** |
+|--------|-----------|
+| `Step 1 - Press allow` | <img src="step1.png" width="50%"> |
+| `Step 2 - Click the Blocks, search for Malloy, install` | <img src="step2.png" width="50%"> |
+| `Step 3 - Click Trust` | <img src="step3.png" width="50%"> |
+| `Step 4 - Click a .malloynb file` | <img src="step4.png" width="50%"> |
+| `Step 5 - Press Run` | <img src="step5.png" width="50%"> |
 
-
-Once on Github, click Shift + period to open the Visual Studio browser.
 
 Navigate to file complaints.malloynb to run the code. 
 
