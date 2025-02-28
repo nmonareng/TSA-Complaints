@@ -26,8 +26,6 @@ This data is crucial for understanding the effectiveness and efficiency of TSA o
 
 By analyzing TSA complaint data, the agency can continuously improve both security and customer service, making air travel safer and more efficient for everyone.
 
-
-
 ## Data Source
 
 The data is collected and maintained by the Transportation Security Administration (TSA). Each record represents the total number of complaints received for a specific airport, category, and subcategory within a given month. In its FOIA Electronic Reading Room, the TSA publishes semi-regular reports on the monthly numbers of traveler complaints by airport, category, and subcategory. The data can be accessed from the TSA FOIA Electronic Reading Room at [tsa.gov/foia/readingroom](https://www.tsa.gov/foia/readingroom?page=0).
@@ -36,7 +34,7 @@ The Data Liberation Project has cleaned and converted the data from PDF format i
 
 ## Summary of Findings
 
-Unfortunately some of the complaints have not been allocated to an airport,category or subcategory. 
+The results provide an overview of the analyzed complaints; however, they may not be fully comprehensive. Unfortunately, some complaints have not been allocated to an airport, category, or subcategory due to missing or incomplete data. As a result, certain insights may be limited, and the findings should be interpreted with this consideration in mind.
 
 Using Malloy, a summary of complaints by country has been generated:
 
