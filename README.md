@@ -36,7 +36,7 @@ The Data Liberation Project has cleaned and converted the data from PDF format i
 
 The results provide an overview of the analyzed complaints; however, they may not be fully comprehensive. Unfortunately, some complaints have not been allocated to an airport, category, or subcategory due to missing or incomplete data. As a result, certain insights may be limited, and the findings should be interpreted with this consideration in mind.
 
-Using Malloy, a summary of complaints by country has been generated:
+Using Malloy, a summary of complaints by country has been generated and this is the code:
 
 ```
 SubCategory_Complaints -> {
@@ -48,23 +48,6 @@ SubCategory_Complaints -> {
 ```
 
 This calculation helps analyze the proportion of total complaints attributed to different countries, providing insights into geographic trends in traveler concerns.
-
-Another calculation has been performed to analyze complaints over time:
-
-```
-# bar_chart
-run: SubCategory_Complaints -> {
-    group_by: complaint_date.year
-    aggregate: total_complaints
-
-    # tooltip
-    aggregate:
-    total_categories is count(clean_cat)
-    total_Subcategories is count(Clean_subcat)
-}
-```
-
-This helps track trends in complaints over the years and provides insights into the diversity of complaint categories and subcategories.
 
 ### Visualization
 
