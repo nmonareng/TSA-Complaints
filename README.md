@@ -8,9 +8,7 @@ This dataset contains monthly counts of traveler complaints filed with the Trans
 
 This data is crucial for understanding the effectiveness and efficiency of TSA operations across different airports. Policymakers and stakeholders can identify systemic issues, improve security screening processes, and enhance traveler satisfaction by analyzing complaint patterns. Additionally, it promotes transparency and accountability within the TSA, helping to ensure that traveler concerns are addressed and service standards are maintained.
 
-# Importance of TSA Complaints Data
-
-Data about TSA complaints plays a crucial role in improving the overall airport and security experience. It provides insights that can help shape better practices, procedures, and policies. Below are key reasons why this data is important:
+The data plays a crucial role in improving the overall airport and security experience. It provides insights that can help shape better practices, procedures, and policies. Such as: 
 
 ## 1. Improves Customer Service
    - Identifies recurring issues that affect passenger satisfaction.
