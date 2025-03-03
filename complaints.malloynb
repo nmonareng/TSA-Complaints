@@ -47,89 +47,70 @@ complaints_per_month is count(complaint_count)
 avg_complaints is avg(complaint_count)
 
 
+
 } 
 >>>markdown
 ### This dataset contains monthly counts of traveler complaints filed with the Transportation Security Administration (TSA) across various airports. Complaints are categorized by airport, category, and subcategory, providing insights into traveler experiences and recurring issues over time.
 >>>markdown
-### 1.How many airports are in the dataset?
+### 1. This dashboard shows a summary of the aiports, and complaints distribution. 
 >>>malloy
+# dashboard
 run: SubCategory_Complaints -> {
-    aggregate:total_airports
+    nest: `Number of airports and complaints in the data set` is {
+    aggregate:total_airports, total_complaints
 }
->>>markdown
-### 2. Total number of complaints recorded in the dataset.
->>>malloy
-run: SubCategory_Complaints -> {
+
+nest: `Airport with highest number of complaints are USA based.Note: Null/blank values appear to represent complaints not associated with any airport in particular. This makes the dataset incoclusive. They are not grand totals.` is {
+group_by:airport, Airport_code.airport_name, Airport_code.country_name
+    aggregate:total_complaints
+    limit: 5
+}
+# bar_chart
+nest: `The trend of complaints went up in 2022 and 2023,this may be due to Covid restrictions. The category with the most complaints was Expediated Passenger Screening which moved from 40,000 to 135,000` is {
+group_by: complaint_date.year
     aggregate:total_complaints
 
-}
->>>markdown
-### 3. Airport with highest number of complaints?
+     # tooltip
+     nest: `Category and Subcat which had most complaints`is {
+     group_by:clean_cat,Clean_subcat
+     aggregate:
+     total_complaints
+     order_by: total_complaints desc
+     limit:10
 
-Note: Null/blank values appear to represent complaints not associated with any airport in particular. They are not grand totals.
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by:airport, Airport_code.airport_name
-    aggregate:total_complaints
-    
-}
->>>markdown
-### 4. Which Country has the highest % complaints?
->>>malloy
+}}
 
-run: SubCategory_Complaints -> {
+nest: `USA had the highest % complaints in 2022 and 2023` is {
+where: complaint_date.year <= @2023 and complaint_date >= @2022
     group_by:Airport_code.country_name
     aggregate:total_complaints
     # percent
-    all_complaints is total_complaints/all(total_complaints)
-    
+    all_complaints is total_complaints/all(total_complaints)  
 }
->>>markdown
-### What is the trend of complaints over time, yearly?
->>>malloy
-# bar_chart
-run: SubCategory_Complaints -> {
-    group_by: complaint_date.year
-    aggregate:total_complaints
-    
-}
->>>markdown
-### 5. How many complaints are there per year?
->>>malloy
-# bar_chart
-run: SubCategory_Complaints -> {
-    group_by:complaint_date.year
-    aggregate:total_complaints
 
-    # tooltip
-     aggregate:
-     total_categories is count(clean_cat)
-     total_Subcategories is count(Clean_subcat)
-           
-}
->>>markdown
-### 6. Which year had the most Categories?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by:complaint_date.year
-    aggregate:total_categories is count(clean_cat)
-    order_by: total_categories desc
-    limit:1   
-}
->>>markdown
-### 7. Are there any seasonal patterns in the complaints data?
->>>malloy
-
-run: SubCategory_Complaints -> {
-    group_by:complaint_date.year
+nest: `In 2020 there was a huge drop in Q2, this may be attributed to COVID_19, less people were traveling. Other years have steady trends throuout the year.` is {
+group_by:complaint_date.year
     # line_chart 
        nest:seasonal_patterns is {
          group_by: complaint_date.quarter
         aggregate:total_complaints
     }   
 }
+}
+   
 >>>markdown
-### 8 Are there any categories with consistently increasing or decreasing complaint trends?
+### 2. There are categories with consistently increasing or decreasing complaint trends, like Mishandling of Passanger Property and TSA contact information while some are consistent. 
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: clean_cat
+        # bar_chart {y.independent size=spark}
+    nest: trends is {
+        group_by: complaint_date.year
+        aggregate:total_complaints
+    }
+}
+>>>markdown
+### 3. Are there similar categories with consistently increasing or decreasing complaint trends?
 >>>malloy
 
 run: SubCategory_Complaints -> {
@@ -140,12 +121,19 @@ run: SubCategory_Complaints -> {
     nest: trends is {
         group_by: complaint_date.year
         aggregate:total_complaints
-        
-    
     }
 }
 >>>markdown
-### Which year had the most Subcategories?
+### 4. Which year had the most Categories?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by:complaint_date.year
+    aggregate:total_categories is count(clean_cat)
+    order_by: total_categories desc
+    limit:1   
+}
+>>>markdown
+### 5. Which year had the most Subcategories?
 >>>malloy
 run: SubCategory_Complaints-> {
     group_by:complaint_date.year
@@ -154,7 +142,7 @@ run: SubCategory_Complaints-> {
     limit:1   
 }
 >>>markdown
-### Which Category had the most complaints in 2021?
+### 6.  2021 had the most most categories of complaints because of Covid-19 restrictions and more rules were implemented in a rush to restrict the spread of the virus. Most complaints were in the category of Expedited Passenger Screening Program. 
 >>>malloy
 run: SubCategory_Complaints -> {
     group_by:clean_cat
@@ -163,17 +151,18 @@ run: SubCategory_Complaints -> {
     limit:1
 }
 >>>markdown
-### Which SubCategory had the most complaints in 2021?
+### 7. The SubCategories which had the most complaints in 2021 were in relation to the main Category expedited passenger screeening. With more people travelling and more requirements for Transportation Security Officers, it is understandable why TSA PreCheck and TSO would have more complaints. 
 >>>malloy
 run: SubCategory_Complaints -> {
-    group_by:clean_cat,Clean_subcat
+    group_by:Clean_subcat
     aggregate:total_complaints
     where: complaint_date = @2021   
     order_by: total_complaints desc
+    limit:3
    
 }
 >>>markdown
-### Which airport contributed to most of the complaints in 2021?
+### 8. Many people fly through US airports, especially Hartsfield-Jackson Atlanta International Airport, which is the busiest airport in the United States. In 2023, this airport served 104,653,451 passengers, making it the second busiest airport in the world. It's also one of the busiest airports in the world. This may be the reason why it has most complaints. Most people fly through USA airports and this is indicative by the distribution of complaints. 
 >>>malloy
 run: SubCategory_Complaints -> {
     group_by: airport, Airport_code.airport_name,Airport_code.city_name
@@ -182,7 +171,7 @@ run: SubCategory_Complaints -> {
     limit:5  
 }
 >>>markdown
-### What is the trend of complaints over time, monthly?
+### 9. Data shows that the complaints over time, monthly have been increasing since 2022 with a small drop in January 2024.
 >>>malloy
 # line_chart
 run: SubCategory_Complaints -> {
@@ -191,180 +180,15 @@ run: SubCategory_Complaints -> {
     
 }
 >>>markdown
- ### Which category has the highest number of complaints?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: clean_cat
-    aggregate:total_complaints
-    order_by: total_complaints desc
-    limit: 1
-    
-}
->>>markdown
-### Which categories have the fewest complaints overall?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: clean_cat
-    aggregate:total_complaints
-     order_by: total_complaints 
-    limit: 1
-    
-}
->>>markdown
-### Which subcategory has the highest number of complaints?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: Clean_subcat
-    aggregate:total_complaints
-    order_by: total_complaints desc
-    limit: 2
-    
-}
->>>markdown
-### Which subcategory has the fewest number of complaints?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: Clean_subcat
-    aggregate:total_complaints
-    order_by: total_complaints 
-    limit: 1   
-}
->>>markdown
-### Are there any sub_categories with consistently increasing or decreasing complaint trends?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: clean_cat 
-        # bar_chart {y.independent size=spark}
-    nest: trends is {
-        group_by: complaint_date.year
-        aggregate:total_complaints
-    }
-}
->>>markdown
-### What is the Distribution of Complaints Across Different Airports?
+### 10. What is the Distribution of Complaints Across Different Airports?
 >>>malloy
 run: SubCategory_Complaints -> {
     group_by: airport
     aggregate:total_complaints
-}
->>>markdown
-### What is the Distribution of Complaints Across Different Airports by Category?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: airport
-    --aggregate:total_complaints
-     nest: Complaints_Distribution is {
-        group_by: Category_Complaints.clean_cat
-        aggregate:total_complaints
-    limit:10
-    }
-}
->>>markdown
-### What is the Distribution of Complaints Across Different Airports by Sub Category?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: airport
-    --aggregate:total_complaints
-     nest: Complaints_Distribution is {
-        group_by:Clean_subcat
-        aggregate:total_complaints
-    limit:10
-    }
-}
->>>markdown
-### Which month had the highest number of complaints overall?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: complaint_date.month
-    aggregate:total_complaints 
-    order_by:total_complaints desc
-    limit:1
-}
->>>markdown
-### Which month had the lowest number of complaints?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: complaint_date.month
-    aggregate:total_complaints 
-    order_by:total_complaints 
-    limit:1  
-}
->>>markdown
-### Are there specific months or seasons where certain categories are more prevalent?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: complaint_date.quarter
-     nest: Category_trends is {
-        group_by: clean_cat,Clean_subcat
-        aggregate:total_complaints
-    }
-}
->>>markdown
-### How many unique subcategories are present in the dataset?
->>>malloy
-run: SubCategory_Complaints -> {
-    aggregate:unique_subcat 
-    
-}
->>>markdown
-### How many unique categories are present in the dataset?
->>>malloy
-run: SubCategory_Complaints -> {
-    aggregate:unique_cat
-    
-}
->>>markdown
-### What is the average number of complaints per month?
->>>malloy
---# line_chart
-run: SubCategory_Complaints -> {
-    --group_by: complaint_date.month
-    aggregate:avg_complaints 
-  
 }
 >>>markdown
  
-### What are the top 5 complaint categories by count?
->>>malloy
-
-run: SubCategory_Complaints -> {
-    group_by: clean_cat
-    aggregate:total_complaints
-    limit:5
-}
->>>markdown
-
-### What are the top 5 subcategories by count?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: Clean_subcat
-    aggregate:total_complaints
-    limit:5
-}
->>>markdown
-
-### Which categories have the most subcategories?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: clean_cat
-    aggregate:unique_subcat is count(Clean_subcat)
-    order_by:unique_subcat desc
-    limit:5
-}
->>>markdown
-
-### Are there any subcategories that appear under multiple categories?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: Clean_subcat, clean_cat
-    aggregate:unique_cat is count(clean_cat)
-    filter is unique_subcat >1 
-    order_by: filter desc
-    
-}
->>>markdown
- 
-### Which subcategories have the most significant fluctuations over time?
+### 11. The graphs show Which subcategories have the most significant fluctuations over time
 >>>malloy
 run: SubCategory_Complaints -> {
     group_by: Clean_subcat
@@ -379,7 +203,7 @@ run: SubCategory_Complaints -> {
 }
 >>>markdown
 
-### Are there subcategories that are unique to specific airports?
+### 12. Are there subcategories that are unique to specific airports?
 >>>malloy
 run: SubCategory_Complaints -> {
     group_by: airport
@@ -392,64 +216,18 @@ run: SubCategory_Complaints -> {
     }
 }
 >>>markdown
-
-### Which airport has the highest number of complaints in each category?
+### 13. What is the geographic distribution of complaints by airport?
 >>>malloy
 
+# shape_map
 run: SubCategory_Complaints -> {
     group_by: Airport_code.country_name
-     aggregate:total_complaints
-    nest: airports_with_highest_cat is {
-        group_by: clean_cat,airport, Airport_code.airport_name
-        aggregate:total_complaints
-        limit:10
-    }
-}
->>>markdown
-
-### How many Cities are represented in the data?
->>>malloy
-run: SubCategory_Complaints -> {
-        aggregate:total_cities is count(Airport_code.city_name)
-    
-}
->>>markdown
-
-###  Are there specific cities that have a higher frequency of complaints?
->>>malloy
-
-run: SubCategory_Complaints -> {
-    group_by: Airport_code.city_name
-    aggregate:total_complaints
-      
-}
->>>markdown
-### Are there Cities with more than one airport?
->>>malloy
-run: SubCategory_Complaints -> {
-    group_by: Airport_code.city_name
-    aggregate: num_airports is count(airport)
-    order_by: num_airports desc
-    limit: 10
-    
-}
->>>markdown
-### What is the geographic distribution of complaints by airport?
->>>malloy
-
-run: SubCategory_Complaints -> {
-    group_by: Airport_code.city_name
     aggregate: total_airports
     limit: 10
-    # shape_map
-    nest: geographic_distr_complaints is {
-          group_by: Airport_code.airport_name
-          aggregate: total_complaints
-
-    } 
+    
   }
 >>>markdown
-### Do cities with multiple airports have different complaint patterns?
+### 14. Do cities with multiple airports have different complaint patterns?
 >>>malloy
 run: SubCategory_Complaints -> {
     group_by: Airport_code.city_name
@@ -462,7 +240,7 @@ run: SubCategory_Complaints -> {
     }
 }
 >>>markdown
-### Do cities with multiple airports have similar complaint category?
+### 15. Do cities with multiple airports have similar complaint category?
 >>>malloy
 # bar_chart
 run: SubCategory_Complaints -> {
@@ -478,4 +256,201 @@ run: SubCategory_Complaints -> {
         limit:5
       
     }
+}
+>>>markdown
+ ### 16. Which category has the highest number of complaints?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: clean_cat
+    aggregate:total_complaints
+    order_by: total_complaints desc
+    limit: 1
+    
+}
+>>>markdown
+### 17. Which categories have the fewest complaints overall?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: clean_cat
+    aggregate:total_complaints
+     order_by: total_complaints 
+    limit: 1
+    
+}
+>>>markdown
+### 18. Which subcategory has the highest number of complaints?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: Clean_subcat
+    aggregate:total_complaints
+    order_by: total_complaints desc
+    limit: 2
+    
+}
+>>>markdown
+### 19. Which subcategory has the fewest number of complaints?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: Clean_subcat
+    aggregate:total_complaints
+    order_by: total_complaints 
+    limit: 1   
+}
+>>>markdown
+### 20.What is the Distribution of Complaints Across Different Airports by Category?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: airport
+    
+     nest: Complaints_Distribution is {
+        group_by: Category_Complaints.clean_cat
+        aggregate:total_complaints
+    limit:10
+    }
+}
+>>>markdown
+### 21. What is the Distribution of Complaints Across Different Airports by Sub Category?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: airport
+    --aggregate:total_complaints
+     nest: Complaints_Distribution is {
+        group_by:Clean_subcat
+        aggregate:total_complaints
+    limit:10
+    }
+}
+>>>markdown
+### 22. Which month had the highest number of complaints overall?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: complaint_date.month
+    aggregate:total_complaints 
+    order_by:total_complaints desc
+    limit:1
+}
+>>>markdown
+### 23. Which month had the lowest number of complaints?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: complaint_date.month
+    aggregate:total_complaints 
+    order_by:total_complaints 
+    limit:1  
+}
+>>>markdown
+### 24. Are there specific months or seasons where certain categories are more prevalent?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: complaint_date.quarter
+     nest: Category_trends is {
+        group_by: clean_cat,Clean_subcat
+        aggregate:total_complaints
+    }
+}
+>>>markdown
+### 25. How many unique subcategories are present in the dataset?
+>>>malloy
+run: SubCategory_Complaints -> {
+    aggregate:unique_subcat 
+    
+}
+>>>markdown
+### 26. How many unique categories are present in the dataset?
+>>>malloy
+run: SubCategory_Complaints -> {
+    aggregate:unique_cat
+    
+}
+>>>markdown
+### 27. What is the average number of complaints per month?
+>>>malloy
+# line_chart
+run: SubCategory_Complaints -> {
+    group_by: complaint_date.month
+    aggregate:avg_complaints 
+  
+}
+>>>markdown
+ 
+### 28. What are the top 5 complaint categories by count?
+>>>malloy
+
+run: SubCategory_Complaints -> {
+    group_by: clean_cat
+    aggregate:total_complaints
+    limit:5
+}
+>>>markdown
+
+### 29. What are the top 5 subcategories by count?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: Clean_subcat
+    aggregate:total_complaints
+    limit:5
+}
+>>>markdown
+
+### 30. Which categories have the most subcategories?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: clean_cat
+    aggregate:unique_subcat is count(Clean_subcat)
+    order_by:unique_subcat desc
+    limit:5
+}
+>>>markdown
+
+### 31. Are there any subcategories that appear under multiple categories?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: Clean_subcat, clean_cat
+    aggregate:unique_cat is count(clean_cat)
+    filter is unique_subcat >1 
+    order_by: filter desc
+    
+}
+>>>markdown
+
+### 32. Which airport has the highest number of complaints in each category?
+>>>malloy
+
+run: SubCategory_Complaints -> {
+    group_by: Airport_code.country_name
+     aggregate:total_complaints
+     --# line_chart (y.independent)
+    nest: airports_with_highest_cat is {
+        group_by: clean_cat,airport, Airport_code.airport_name
+        aggregate:total_complaints
+        limit:10
+    }
+}
+>>>markdown
+
+### 33. How many Cities are represented in the data?
+>>>malloy
+run: SubCategory_Complaints -> {
+        aggregate:total_cities is count(Airport_code.city_name)
+    
+}
+>>>markdown
+
+### 34.  Are there specific cities that have a higher frequency of complaints?
+>>>malloy
+
+run: SubCategory_Complaints -> {
+    group_by: Airport_code.city_name
+    aggregate:total_complaints
+      
+}
+>>>markdown
+### 35. Are there Cities with more than one airport?
+>>>malloy
+run: SubCategory_Complaints -> {
+    group_by: Airport_code.city_name
+    aggregate: num_airports is count(airport)
+    order_by: num_airports desc
+    limit: 10
+    
 }
