@@ -62,16 +62,25 @@ This calculation helps analyze the proportion of total complaints attributed to 
 
 Below is are images showcasing some of the main findings from the analysis:
 
-![Summary of Findings](https://github.com/nmonareng/TSA-Complaints/blob/main/Summary_of_findings.png?raw=true)
+<img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Summary_of_findings.png?raw=true" width="500">
+
+
 
 ### Finding 1
-![Findings 1](https://github.com/nmonareng/TSA-Complaints/blob/main/Findings1.png)
+
+<img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings1.png" width="500">
+
+
 
 ### Finding 2
-![Findings 2](https://github.com/nmonareng/TSA-Complaints/blob/main/Findings2.png)
+
+<img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings2.png" width="500">
+
+
 
 ### Finding 3
-![Findings 3](https://github.com/nmonareng/TSA-Complaints/blob/main/Findings3.png)
+
+<img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings3.png" width="500">
 
 
 # How to Open a Shared GitHub File and Run Malloy Code
