@@ -219,10 +219,9 @@ run: SubCategory_Complaints -> {
 ### 13. What is the geographic distribution of complaints by airport?
 >>>malloy
 
-# shape_map
 run: SubCategory_Complaints -> {
     group_by: Airport_code.country_name
-    aggregate: total_airports
+    aggregate: total_airports, total_complaints
     limit: 10
     
   }
