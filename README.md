@@ -63,7 +63,7 @@ SubCategory_Complaints -> {
 
 ## Below are images showcasing some of the main findings from the analysis:
 
-This summary is a result of the above Malloy code. It provides a high-level overview of total complaints in the 448 airports. It further shows the distribution of the complaints to the various airports in different countries with ATL in USA leading with the most complaints. With this data we were able to further deduce that 2022 going to 2023 had the most complaints as a result of covid and this is shown in the bar_chart below. 
+This summary is a result of the above Malloy code. It provides a high-level overview of total complaints in the 448 airports. It further shows the distribution of the complaints to the various airports in different countries with USA leading with the most complaints as it is known to for having the largest number of people flying through it's aiports. With this data we were able to further deduce that 2022 going to 2023 had the most complaints as a result of covid and this is shown in the bar_chart below. 
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Summary_of_findings.png?raw=true" width="500">
 
