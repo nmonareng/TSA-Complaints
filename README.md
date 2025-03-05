@@ -87,7 +87,7 @@ This graph displays the number of complaints received per month. There is a clea
 
 ### Finding 3
 
-This chart highlights how complaints were handled, including the percentage that were resolved, escalated, or remained unresolved. A significant portion of complaints appear to be left unresolved, pointing to potential gaps in TSA’s response system. 
+This chart highlights how complaints in different sub_categories fluctuate over time. This may indicate that they were handled, escalated, or remained unresolved. A significant portion of complaints appear to be left unresolved, pointing to potential gaps in TSA’s response system. 
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings3.png" width="500">
 
