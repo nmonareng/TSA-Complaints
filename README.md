@@ -47,6 +47,8 @@ The results provide an overview of the analyzed complaints; however, they may no
 
 Using Malloy, a summary of complaints by country has been generated and this is the code:
 
+This calculation helps analyze the proportion of total complaints attributed to different countries, providing insights into geographic trends in traveler concerns.
+
 ```
 SubCategory_Complaints -> {
     group_by: Airport_code.country_name
@@ -56,11 +58,12 @@ SubCategory_Complaints -> {
 }
 ```
 
-This calculation helps analyze the proportion of total complaints attributed to different countries, providing insights into geographic trends in traveler concerns.
 
 ### Visualization
 
 Below is are images showcasing some of the main findings from the analysis:
+
+## This summary is a result of the above Malloy code. It provides a high-level overview of total complaints in the 448 airports. It further shows the distribution of the complaints to the various airports in different countries with ATL in USA leading the most complaints. With this data we were able to further deduce that 2022 going to 2023 had the most complaints as a result of covid and this is shown by the bar_chart below. 
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Summary_of_findings.png?raw=true" width="500">
 
@@ -68,17 +71,23 @@ Below is are images showcasing some of the main findings from the analysis:
 
 ### Finding 1
 
+### This visualization shows the distribution of different complaint categories. The most common complaints involve customer service, screening procedures, and property damage/loss. Understanding this breakdown helps prioritize areas for improvement.  
+
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings1.png" width="500">
 
 
 
 ### Finding 2
 
+### This graph displays the number of complaints received per month. There is a clear pattern of increased complaints during peak travel seasons (summer and holidays), suggesting that TSA resources may need to be adjusted accordingly.  
+
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings2.png" width="500">
 
 
 
 ### Finding 3
+
+### This chart highlights how complaints were handled, including the percentage that were resolved, escalated, or remained unresolved. A significant portion of complaints appear to be left unresolved, pointing to potential gaps in TSA’s response system. 
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings3.png" width="500">
 
