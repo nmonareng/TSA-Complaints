@@ -71,7 +71,7 @@ This summary is a result of the above Malloy code. It provides a high-level over
 
 ### Finding 1
 
-This visualization shows the distribution of different complaint categories. The most common complaints involve customer service, screening procedures, and property damage/loss. Understanding this breakdown helps prioritize areas for improvement.  
+This visualization shows the categories with consistently increasing or decreasing complaint trends. The most increasing categories involve Additional Information Required/Insufficient Information,customer service, patdown, screening procedures, and property damage/loss. Understanding this breakdown helps prioritize areas for improvement.  
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings1.png" width="500">
 
