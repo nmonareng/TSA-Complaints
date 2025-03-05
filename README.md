@@ -47,7 +47,7 @@ The results provide an overview of the analyzed complaints; however, they may no
 
 Using Malloy, a summary of complaints by country has been generated and this is the code:
 
-This calculation helps analyze the proportion of total complaints attributed to different countries, providing insights into geographic trends in traveler concerns.
+This calculation helps analyze the proportion of total complaints attributed to different countries, providing insights into geographic trends in traveler concerns. The results of this code is shown below under visualizations. 
 
 ```
 SubCategory_Complaints -> {
@@ -71,7 +71,7 @@ This summary is a result of the above Malloy code. It provides a high-level over
 
 ### Finding 1
 
-This visualization shows the categories with consistently increasing or decreasing complaint trends. The most increasing categories involve Additional Information Required/Insufficient Information,customer service, patdown, screening procedures, and property damage/loss. Understanding this breakdown helps prioritize areas for improvement.  
+This visualization shows the categories with consistently increasing or decreasing complaint trends. The most increasing categories involve Additional Information Required/Insufficient Information,customer service, patdown, screening procedures, and property damage/loss. Some categories, such as Animals, maintain a consistent number of complaints, indicating ongoing concerns in those areas. During COVID-19 airports had to implement a lot of changes such as flight bans, new regulations, and restrictions which led to increased complaints.Understanding this breakdown helps prioritize areas for improvement.  
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings1.png" width="500">
 
@@ -79,7 +79,7 @@ This visualization shows the categories with consistently increasing or decreasi
 
 ### Finding 2
 
-This graph displays the number of complaints received per month. There is a clear pattern of increased complaints during peak travel seasons (summer and holidays), suggesting that TSA resources may need to be adjusted accordingly.  
+This time-series chart tracks the total number of complaints submitted each month. The data reveals long-term trends in passenger dissatisfaction with TSA procedures. There is a clear pattern of increased complaints during peak travel seasons (summer and holidays), suggesting that TSA resources may need to be adjusted accordingly. TSA complaints increased significantly after mid-2021, likely due to the post-COVID travel surge. Complaints remain consistently high, suggesting persistent passenger frustrations with TSA operations and there is no clear downward trend, meaning issues have not been fully resolved.
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings2.png" width="500">
 
@@ -87,7 +87,7 @@ This graph displays the number of complaints received per month. There is a clea
 
 ### Finding 3
 
-This chart highlights how complaints in different sub_categories fluctuate over time. This may indicate that they were handled, escalated, or remained unresolved. A significant portion of complaints appear to be left unresolved, pointing to potential gaps in TSA’s response system. 
+This chart highlights how complaints in different sub_categories fluctuate over time. The data helps identify which passenger groups are experiencing more issues over time like, concerns related to Active Duty Military and Age-related complaints.A major spike in a particular subcategory occurred around 2021, possibly due to a policy change. Age-related complaints show irregular patterns, implying potential issues affecting older travelers during specific periods. This may indicate that they were handled, escalated, or remained unresolved. A significant portion of complaints appear to be left unresolved, pointing to potential gaps in TSA’s response system. 
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings3.png" width="500">
 
