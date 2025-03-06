@@ -35,7 +35,7 @@ The Data Liberation Project has cleaned and converted the data from PDF format i
 ## Malloy Code Files
 
 
-This repository contains two Malloy code files:
+This repository contains one Malloy code files:
 
 - [complaints.malloynb](https://github.com/nmonareng/TSA-Complaints/blob/main/complaints.malloynb)
 
