@@ -87,7 +87,7 @@ This time-series chart tracks the total number of complaints submitted each mont
 
 ### Finding 3
 
-This chart highlights how complaints in different sub_categories fluctuate over time. The data helps identify which passenger groups are experiencing more issues over time like, concerns related to Active Duty Military and Age-related complaints.A major spike in a particular subcategory occurred around 2021, possibly due to a policy change. Age-related complaints show irregular patterns, implying potential issues affecting older travelers during specific periods. This may indicate that they were handled, escalated, or remained unresolved. A significant portion of complaints appear to be left unresolved, pointing to potential gaps in TSA’s response system. 
+This chart highlights how complaints in different sub_categories fluctuate over time among specific passenger groups. Complaints from Active Duty Military remained stable until a sharp spike in 2022-2023, suggesting possible policy changes or increased security measures affecting military personnel. Age-related complaints peaked around 2019, declined during COVID-19 travel restrictions, and fluctuated afterward, indicating ongoing but inconsistent concerns for older travelers. Meanwhile, general Airport/TSA complaints peaked in 2016-2017 before steadily declining, possibly due to improved TSA processes or shifting passenger concerns.  These trends highlight evolving traveler frustrations, with military personnel and elderly passengers facing distinct challenges, warranting further investigation into TSA policies and their impact.
 
 <img src="https://github.com/nmonareng/TSA-Complaints/blob/main/Findings3.png" width="500">
 
